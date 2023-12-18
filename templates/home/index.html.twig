@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+
+    <h1>Accueil</h1>
+
+    <div class="mb-3">
+        <button class="btn btn-outline-primary" data-bs-toggle="collapse" data-bs-target="#programme">
+            Afficher le programme
+        </button>
+    </div>
+
+    <div class="collapse show" id="programme">
+        <ul>
+            <li>Service</li>
+            <li>Envoie email</li>
+            <li>Upload Fichier</li>
+            <li>hinclude / fetch</li>
+            <li>Accès HTTP</li>
+        </ul>
+    </div>
+
+{% endblock %}
