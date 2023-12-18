@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block importmap %}
+    {{ importmap(['app', 'toast']) }}
+{% endblock %}
+
+{% block title %}Les services: Envoyer un email{% endblock %}
+
+{% block body %}
+
+    <h1>Contactez Nous</h1>
+
+    {{ form_start(form) }}
+    {{ form_rest(form) }}
+
+    <button class="btn btn-outline-primary">Envoyer</button>
+    {{ form_end(form) }}
+{% endblock %}

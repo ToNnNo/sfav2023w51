@@ -1,0 +1,13 @@
+form:
+  contact:
+    name:
+      label: Nom
+    email:
+      label: Adresse email
+    subject:
+      label: Nature de la demande
+      informations_request: Demande d'informations
+      be_recalled: Etre rappelé par un commercial
+      estimate: Demander un devis
+    message:
+      label: Message
