@@ -31,16 +31,15 @@
                 {% endfor %}
             </div>
         {% endfor %}
-
         {% block body %}{% endblock %}
     </main>
     <footer>
         <hr/>
         <p class="small text-center">Dawan FOAD - POEI PHP - Décembre 2023</p>
     </footer>
-    <!--div class="toast-container position-static">
+    <!--div class="toast-container p-3 top-0 end-0">
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
+            <div class="toast-header bg-success">
                 <img src="" class="rounded me-2" alt="...">
                 <strong class="me-auto">Bootstrap</strong>
                 <small class="text-body-secondary">just now</small>
@@ -64,7 +63,7 @@
         </div>
     </div-->
     {% for type, messages in app.flashes %}
-        <div class="toast-container position-static">
+        <div class="toast-container p-3 top-0 end-0">
             {% for message in messages %}
                 <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">

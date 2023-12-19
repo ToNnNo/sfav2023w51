@@ -25,7 +25,7 @@ return [
         'version' => '3.2.2',
     ],
     '@hotwired/turbo' => [
-        'version' => '8.0.0-beta.1',
+        'version' => '7.3.0',
     ],
     'bootstrap' => [
         'version' => '5.3.2',
@@ -39,6 +39,6 @@ return [
     ],
     'toast' => [
         'path' => './assets/toast.js',
-        'entrypoint' => true
-    ]
+        'entrypoint' => true,
+    ],
 ];

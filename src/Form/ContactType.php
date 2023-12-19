@@ -16,25 +16,25 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', options: [
-                'label' => 'form.contact.name.label',
-            ])
-            ->add('email', EmailType::class, [
-                'label' => 'form.contact.email.label',
-                'constraints' => [new NotBlank(), new Email()]
-            ])
-            ->add('subject', ChoiceType::class, [
-                'label' => 'form.contact.subject.label',
-                'choices' => [
-                    "form.contact.subject.informations_request" => "form.contact.subject.informations_request",
-                    "form.contact.subject.be_recalled" => "form.contact.subject.be_recalled",
-                    "form.contact.subject.estimate" => "form.contact.subject.estimate",
-                ]
-            ])
-            ->add('message', TextareaType::class, [
-                'label' => 'form.contact.message.label',
-                'attr' => [
-                    'rows' => 7
+                ->add('name', options: [
+                    'label' => 'form.contact.name.label',
+                ])
+                ->add('email', EmailType::class, [
+                    'label' => 'form.contact.email.label',
+                    'constraints' => [new NotBlank(), new Email()]
+                ])
+                ->add('subject', ChoiceType::class, [
+                    'label' => 'form.contact.subject.label',
+                    'choices' => [
+                        "form.contact.subject.informations_request" => "form.contact.subject.informations_request",
+                        "form.contact.subject.be_recalled" => "form.contact.subject.be_recalled",
+                        "form.contact.subject.estimate" => "form.contact.subject.estimate",
+                    ]
+                ])
+                ->add('message', TextareaType::class, [
+                    'label' => 'form.contact.message.label',
+                    'attr' => [
+                        'rows' => 7
                 ],
                 'constraints' => [new NotBlank()]
             ])

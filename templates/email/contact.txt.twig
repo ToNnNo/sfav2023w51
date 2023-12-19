@@ -1,0 +1,12 @@
+Bonjour,
+
+{% if name is not empty -%} {{ name|lower|title }} {%- else -%} Quelqu'un {%- endif %} vous a envoyé le message suivant:
+
+{{ message }}
+
+Voici son adresse email : {{ mail }}
+
+Bonne journée
+--
+Contact
+Message automatique
