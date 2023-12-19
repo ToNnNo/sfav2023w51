@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un contact{% endblock %}
+
+{% block body %}
+
+    <div class="row my-3 align-items-end">
+        <div class="col-8">
+            <h2 class="m-0">Nouveau Contact</h2>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <div class="btn-group">
+                <a href="{{ path('contact_index') }}" class="btn btn-outline-secondary">Annuler</a>
+            </div>
+        </div>
+    </div>
+
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.firstname) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.lastname) }}
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <img src="..." class="rounded-circle shadow"
+                 alt="photo de profile"/>
+        </div>
+        <div class="col-8 pt-3">
+            {{ form_rest(form) }}
+        </div>
+    </div>
+    <div class="text-end">
+        <button class="btn btn-outline-primary">Ajouter</button>
+    </div>
+
+{% endblock %}

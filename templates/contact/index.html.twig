@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des contacts{% endblock %}
+
+{% block body %}
+    <div class="row my-3 align-items-end">
+        <div class="col-8">
+            <h2 class="m-0">Liste des Contacts</h2>
+        </div>
+        <div class="col-4 d-flex justify-content-end">
+            <div class="btn-group">
+                <a href="{{ path('contact_add') }}" class="btn btn-outline-primary">Ajouter</a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Adresse email</th>
+            <th>Numéro de téléphone</th>
+            <th>Date de naissance</th>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.fullname }}</td>
+                <td>{{ contact.email }}</td>
+                <td>{{ contact.phone }}</td>
+                <td>
+                    {% if contact.birthday is not empty %}
+                        {{ contact.birthday|format_date('long') }}
+                    {% endif %}
+                </td>
+                <td class="text-end">
+                    <div class="btn-group btn-group-sm">
+                        <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-outline-primary">Voir
+                            le contact</a>
+                        <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-primary">Modifier
+                            le contact</a>
+                        <a href="{{ path('contact_delete', {'id': contact.id, 'token': csrf_token('delete-contact-'~contact.id)}) }}"
+                           class="btn btn-outline-danger">
+                            Supprimer le contact</a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

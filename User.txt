@@ -1,0 +1,10 @@
+User
+----
+firstname: string
+lastname: string
+birthday: date
+email: string
+phone: string
+picture: string
+
+php bin/console make:entity

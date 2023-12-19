@@ -11,3 +11,14 @@ form:
       estimate: Demander un devis
     message:
       label: Message
+  user:
+    firstname:
+      label: Prénom
+    lastname:
+      label: Nom
+    email:
+      label: Adresse email
+    phone:
+      label: Numéro de téléphone
+    birthday:
+      label: Date de naissance

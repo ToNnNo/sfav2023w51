@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ contact.fullname }}{% endblock %}
+
+{% block body %}
+
+    <div class="row my-3">
+        <div class="col-8">
+            <h2 class="m-0">{{ contact.fullname }}</h2>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+            <span class="me-5">
+                <b>ID</b> {{ contact.id }}
+            </span>
+            <div class="btn-group">
+                <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="btn btn-outline-primary">Modifier</a>
+                <a href="{{ path('contact_index') }}" class="btn btn-outline-secondary">Voir les contacts</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-4 d-flex justify-content-center align-items-center">
+            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="rounded-circle shadow"
+                 alt="photo de profile"/>
+        </div>
+        <div class="col-8 pt-3">
+            <table class="table table-borderless">
+                <colgroup>
+                    <col class="w-25"/>
+                    <col/>
+                </colgroup>
+                <tr>
+                    <td>Adresse email</td>
+                    <td>{{ contact.email }}</td>
+                </tr>
+                <tr>
+                    <td>Numéro de téléphone</td>
+                    <td>{{ contact.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Date de naissance</td>
+                    <td>
+                        {% if contact.birthday is not empty %}
+                            {{ contact.birthday|format_date('long') }}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

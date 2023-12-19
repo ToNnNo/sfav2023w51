@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\ContactType;
+use App\Form\ContactFormType;
 use App\Service\ContactEmail;
 use App\Service\MessageGenerator;
 use Psr\Log\LoggerInterface;
@@ -37,7 +37,7 @@ class ServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/contact', name: 'contact')]
+    #[Route('/contact', name: 'contact_form')]
     public function contact(Request $request): Response
     {
         /**
@@ -60,7 +60,7 @@ class ServiceController extends AbstractController
             'email' => "john.doe@gmail.com",
             'message' => "Hello World"
         ];
-        $form = $this->createForm(ContactType::class, $initialData);
+        $form = $this->createForm(ContactFormType::class, $initialData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

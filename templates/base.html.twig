@@ -21,7 +21,8 @@
     <nav class="nav">
         <a href="{{ path('home_index') }}" class="nav-link">Accueil</a>
         <a href="{{ path('service_index') }}" class="nav-link">Les Services</a>
-        <a href="{{ path('service_contact') }}" class="nav-link">Contactez nous</a>
+        <a href="{{ path('service_contact_form') }}" class="nav-link">Contactez nous</a>
+        <a href="{{ path('contact_index') }}" class="nav-link">Liste des contacts</a>
     </nav>
     <main>
         {% for type, messages in app.flashes %}
