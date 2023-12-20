@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\SerializedName;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
@@ -13,24 +15,30 @@ class Contact
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['contact_read_list', 'contact_read_detail'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['contact_read_list', 'contact_read_detail'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
+    #[Groups(['contact_read_list', 'contact_read_detail'])]
     private ?string $lastname = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[Groups(['contact_read_detail'])]
     private ?\DateTimeInterface $birthday = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     #[Assert\Email]
+    #[Groups(['contact_read_detail'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['contact_read_detail'])]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -104,6 +112,17 @@ class Contact
         $this->phone = $phone;
 
         return $this;
+    }
+
+    #[Groups(['contact_read_detail'])]
+    #[SerializedName('picture')]
+    public function getApiPicture(): ?string
+    {
+        if($this->picture != null) {
+            return '/profile/'.$this->picture;
+        }
+
+        return null;
     }
 
     public function getPicture(): ?string
