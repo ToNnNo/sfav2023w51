@@ -26,11 +26,12 @@
 
         <div class="col-4">
             <div class="position-relative">
+                {{ form_label(form.picture) }}
+                {{ form_errors(form.picture) }}
                 {{ form_widget(form.picture) }}
                 <div class="position-absolute w-25 start-50 top-50 translate-middle-x">
                     <img src="{{ constant('App\\Controller\\ContactController::PLACEHOLDER') }}"
-                         class="rounded-circle shadow img-fluid"
-                         alt="photo de profile"/>
+                         class="rounded-circle shadow img-fluid" alt="photo de profile"/>
                 </div>
             </div>
         </div>

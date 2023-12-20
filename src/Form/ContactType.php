@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class ContactType extends AbstractType
@@ -30,7 +31,14 @@ class ContactType extends AbstractType
             ])
             ->add('picture', DropzoneType::class, [
                 'label' => 'form.user.picture.label',
-                'mapped' => false
+                'label_attr' => ['class' => 'col-sm-12'],
+                'attr' => [
+                    'placeholder' => 'form.user.picture.placeholder'
+                ],
+                'mapped' => false,
+                'constraints' => [
+                    new Image(maxWidth: 250, maxHeight: 250)
+                ]
             ])
         ;
     }

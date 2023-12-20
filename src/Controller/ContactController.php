@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ContactRepository;
+use App\Service\FileManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,8 @@ class ContactController extends AbstractController
 
     public function __construct(
         private readonly ContactRepository      $userRepository,
-        private readonly EntityManagerInterface $entityManager
+        private readonly EntityManagerInterface $entityManager,
+        private readonly FileManager            $fileManager
     )
     {
     }
@@ -50,7 +52,14 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // dump($form->get('picture')->getData());
+
+            $picture = $form->get('picture')->getData();
+
+            if ($picture != null) {
+                $filename = $this->fileManager->upload($picture);
+                $contact->setPicture($filename);
+            }
+
             $this->entityManager->persist($contact);
             $this->entityManager->flush();
 
@@ -71,6 +80,15 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $picture = $form->get('picture')->getData();
+
+            if ($picture != null) {
+                $filename = $this->fileManager->upload($picture);
+                $this->fileManager->remove($contact->getPicture());
+                $contact->setPicture($filename);
+            }
+
             $this->entityManager->flush();
 
             $this->addFlash('success', "Le contact a bien été modifié");
@@ -87,9 +105,10 @@ class ContactController extends AbstractController
     #[Route('/{id}/delete/{token}', name: 'delete')]
     public function delete(Contact $contact, string $token): Response
     {
-        $tokenId = "delete-contact-".$contact->getId();
+        $tokenId = "delete-contact-" . $contact->getId();
 
         if ($this->isCsrfTokenValid($tokenId, $token)) {
+            $this->fileManager->remove($contact->getPicture());
             $this->entityManager->remove($contact);
             $this->entityManager->flush();
 

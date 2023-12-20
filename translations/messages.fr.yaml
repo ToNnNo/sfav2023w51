@@ -24,3 +24,4 @@ form:
       label: Date de naissance
     picture:
       label: Photo de profil
+      placeholder: Déposer une image ou cliquez pour parcourir
