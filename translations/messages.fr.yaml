@@ -22,3 +22,5 @@ form:
       label: Numéro de téléphone
     birthday:
       label: Date de naissance
+    picture:
+      label: Photo de profil

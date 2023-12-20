@@ -1,19 +1,16 @@
-{% extends 'base.html.twig' %}
+{% extends 'contact/base.html.twig' %}
 
 {% block title %}Liste des contacts{% endblock %}
 
-{% block body %}
-    <div class="row my-3 align-items-end">
-        <div class="col-8">
-            <h2 class="m-0">Liste des Contacts</h2>
-        </div>
-        <div class="col-4 d-flex justify-content-end">
-            <div class="btn-group">
-                <a href="{{ path('contact_add') }}" class="btn btn-outline-primary">Ajouter</a>
-            </div>
-        </div>
-    </div>
+{% block page_title %}
+    <h2 class="m-0">Liste des Contacts</h2>
+{% endblock %}
 
+{% block buttons %}
+    <a href="{{ path('contact_add') }}" class="btn btn-outline-primary">Ajouter</a>
+{% endblock %}
+
+{% block content %}
     <table class="table">
         <thead>
         <tr>
@@ -47,18 +44,18 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="{{ path('contact_show', {'id': contact.id}) }}" class="dropdown-item">
-                                Voir le contact</a>
+                                    Voir le contact</a>
                             </li>
                             <li>
                                 <a href="{{ path('contact_edit', {'id': contact.id}) }}" class="dropdown-item">
-                                Modifier le contact</a>
+                                    Modifier le contact</a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li>
                                 <a href="{{ path('contact_delete', {'id': contact.id, 'token': csrf_token('delete-contact-'~contact.id)}) }}"
-                               class="dropdown-item">Supprimer le contact</a>
+                                   class="dropdown-item">Supprimer le contact</a>
                             </li>
                         </ul>
                     </div>

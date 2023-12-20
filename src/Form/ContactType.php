@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\UX\Dropzone\Form\DropzoneType;
 
 class ContactType extends AbstractType
 {
@@ -32,6 +33,10 @@ class ContactType extends AbstractType
             ])
             ->add('birthday', options: [
                 'label' => 'form.user.birthday.label'
+            ])
+            ->add('picture', DropzoneType::class, [
+                'label' => 'form.user.picture.label',
+                'mapped' => false
             ])
         ;
     }

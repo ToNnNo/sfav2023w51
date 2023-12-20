@@ -1,27 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'contact/base.html.twig' %}
 
 {% block title %}Modifier un contact{% endblock %}
 
+{% block page_title %}
+    <h2 class="m-0">Modifier {{ contact.fullname }}</h2>
+{% endblock %}
+
+{% block buttons %}
+    <span class="me-5">
+        <b>ID</b> {{ contact.id }}
+    </span>
+    <div class="btn-group">
+        <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-outline-primary">Afficher le
+            profil</a>
+        <a href="{{ path('contact_index') }}" class="btn btn-outline-secondary">Voir les contacts</a>
+    </div>
+{% endblock %}
+
 {% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
 
-{% block body %}
+{% block content %}
 
-
-    <div class="row my-3 align-items-end">
-        <div class="col-8">
-            <h2 class="m-0">Modifier {{ contact.fullname }}</h2>
-        </div>
-        <div class="col-4 d-flex align-items-center justify-content-end">
-            <span class="me-5">
-                <b>ID</b> {{ contact.id }}
-            </span>
-            <div class="btn-group">
-                <a href="{{ path('contact_show', {'id': contact.id}) }}" class="btn btn-outline-primary">Afficher le
-                    profil</a>
-                <a href="{{ path('contact_index') }}" class="btn btn-outline-secondary">Voir les contacts</a>
-            </div>
-        </div>
-    </div>
     {{ form_start(form) }}
     <div class="row mb-3">
         <div class="col">
@@ -32,12 +31,18 @@
         </div>
     </div>
 
-    <div class="row mb-5">
-        <div class="col-4 d-flex justify-content-center align-items-center">
-            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" class="rounded-circle shadow"
-                 alt="photo de profile"/>
+    <div class="row pt-3">
+        <div class="col-4">
+            <div class="position-relative">
+                {{ form_widget(form.picture) }}
+                <div class="position-absolute w-25 start-50 top-50 translate-middle-x">
+                    <img src="https://mdbootstrap.com/img/new/avatars/9.webp"
+                         class="rounded-circle shadow img-fluid"
+                         alt="photo de profile"/>
+                </div>
+            </div>
         </div>
-        <div class="col-8 pt-3">
+        <div class="col-8">
             {{ form_rest(form) }}
         </div>
     </div>

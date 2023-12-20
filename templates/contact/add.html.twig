@@ -1,19 +1,18 @@
-{% extends 'base.html.twig' %}
+{% extends 'contact/base.html.twig' %}
 
 {% block title %}Ajouter un contact{% endblock %}
 
-{% block body %}
+{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
 
-    <div class="row my-3 align-items-end">
-        <div class="col-8">
-            <h2 class="m-0">Nouveau Contact</h2>
-        </div>
-        <div class="col-4 d-flex justify-content-end">
-            <div class="btn-group">
-                <a href="{{ path('contact_index') }}" class="btn btn-outline-secondary">Annuler</a>
-            </div>
-        </div>
-    </div>
+{% block page_title %}
+    <h2 class="m-0">Nouveau Contact</h2>
+{% endblock %}
+
+{% block buttons %}
+    <a href="{{ path('contact_index') }}" class="btn btn-outline-secondary">Annuler</a>
+{% endblock %}
+
+{% block content %}
 
     {{ form_start(form) }}
 
@@ -26,12 +25,18 @@
         </div>
     </div>
 
-    <div class="row mb-5">
-        <div class="col-4 d-flex justify-content-center align-items-center">
-            <img src="..." class="rounded-circle shadow"
-                 alt="photo de profile"/>
+    <div class="row pt-3">
+        <div class="col-4">
+            <div class="position-relative">
+                {{ form_widget(form.picture) }}
+                <div class="position-absolute w-25 start-50 top-50 translate-middle-x">
+                    <img src="{{ constant('App\\Controller\\ContactController::PLACEHOLDER') }}"
+                         class="rounded-circle shadow img-fluid"
+                         alt="photo de profile"/>
+                </div>
+            </div>
         </div>
-        <div class="col-8 pt-3">
+        <div class="col-8">
             {{ form_rest(form) }}
         </div>
     </div>
