@@ -61,6 +61,15 @@ class ContactController extends AbstractController
         return $this->json($contact, context: ['groups' => 'contact_read_detail']);
     }
 
+    #[Route('/{id}/address', name: 'detail_address', methods: 'GET')]
+    public function detailAddress(int $id): Response
+    {
+        // requete avec une jointure
+        // select ... from address where contact_id = $id
+
+        return $this->json([]);
+    }
+
     #[Route('', name: 'create', methods: 'POST')]
     public function create(Request $request): Response
     {
