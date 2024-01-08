@@ -16,7 +16,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class HttpRequestController extends AbstractController
 {
     public function __construct(
-        private readonly HttpClientInterface $httpClient
+        private readonly HttpClientInterface $httpClient,
+        private readonly HttpClientInterface $jsonplaceholderClient
     ){}
 
     #[Route('', name: 'index')]
@@ -28,6 +29,23 @@ class HttpRequestController extends AbstractController
             $response = $this->httpClient->request('GET', 'https://jsonplaceholder.typicode.com/users', [
                 'auth_bearer' => "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
             ]);
+            $users = $response->toArray();
+        } catch (TransportExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
+            $this->addFlash('danger', "Une erreur est survenue ....");
+        }
+
+        return $this->render('http_request/index.html.twig', [
+            'users' => $users
+        ]);
+    }
+
+    #[Route('/jsonplaceholder', name: 'jsonplaceholder')]
+    public function jsonplaceholder(): Response
+    {
+        $users = [];
+
+        try {
+            $response = $this->jsonplaceholderClient->request('GET', '/users');
             $users = $response->toArray();
         } catch (TransportExceptionInterface|ClientExceptionInterface|DecodingExceptionInterface|RedirectionExceptionInterface|ServerExceptionInterface $e) {
             $this->addFlash('danger', "Une erreur est survenue ....");

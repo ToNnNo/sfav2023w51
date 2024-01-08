@@ -18,7 +18,7 @@ framework:
 
     http_client:
         scoped_clients:
-            jsonplaceholder:
+            jsonplaceholder.client:
                 base_uri: 'https://jsonplaceholder.typicode.com/'
                 auth_bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
