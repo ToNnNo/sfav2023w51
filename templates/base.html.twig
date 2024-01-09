@@ -25,63 +25,18 @@
         <a href="{{ path('contact_index') }}" class="nav-link">Liste des contacts</a>
         <a href="{{ path('http_index') }}" class="nav-link">Liste des Utilisateurs API</a>
         <a href="{{ path('http_jsonplaceholder') }}" class="nav-link">Liste des Utilisateurs API avec config</a>
+        <a href="{{ path('turbo_index') }}" class="nav-link">Turbo</a>
     </nav>
     <main>
-        {% for type, messages in app.flashes %}
-            <div class="alert alert-{{ type }}" role="alert">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        {% endfor %}
         {% block body %}{% endblock %}
     </main>
     <footer>
         <hr/>
         <p class="small text-center">Dawan FOAD - POEI PHP - Décembre 2023</p>
     </footer>
-    <!--div class="toast-container p-3 top-0 end-0">
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header bg-success">
-                <img src="" class="rounded me-2" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small class="text-body-secondary">just now</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                See? Just like this.
-            </div>
-        </div>
-
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
-                <img src="" class="rounded me-2" alt="...">
-                <strong class="me-auto">Bootstrap</strong>
-                <small class="text-body-secondary">2 seconds ago</small>
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-            <div class="toast-body">
-                Heads up, toasts will stack automatically
-            </div>
-        </div>
-    </div-->
-    {% for type, messages in app.flashes %}
-        <div class="toast-container p-3 top-0 end-0">
-            {% for message in messages %}
-                <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <!--img src="..." class="rounded me-2" alt="..."-->
-                        <strong class="me-auto">Centre de notification</strong>
-                        <small class="text-body-secondary">just now</small>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        {{ message }}
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endfor %}
+    <div class="toast-container p-3 top-0 end-0" id="notification">
+        {{ include('notification.html.twig') }}
+    </div>
 </div>
 </body>
 </html>

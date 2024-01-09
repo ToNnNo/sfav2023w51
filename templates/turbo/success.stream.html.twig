@@ -1,0 +1,11 @@
+<turbo-stream action="append" target="notification">
+    <template>
+        {{ include('notification.html.twig') }}
+    </template>
+</turbo-stream>
+
+<turbo-stream action="replace" target="turbo-form">
+    <template>
+        {{ include('turbo/_form.html.twig') }}
+    </template>
+</turbo-stream>

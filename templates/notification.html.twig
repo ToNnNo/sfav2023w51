@@ -1,0 +1,16 @@
+{% for type, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-{{ type }}-subtle border-{{ type }}">
+                <strong class="me-auto">
+                    <i class="bi bi-cone-striped"></i>
+                    Centre de notification
+                </strong>
+                <button type="button" class="btn-close text-primary" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+    {% endfor %}
+{% endfor %}
